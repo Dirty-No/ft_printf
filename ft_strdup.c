@@ -6,12 +6,31 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 21:57:02 by smaccary          #+#    #+#             */
-/*   Updated: 2019/12/19 11:33:13 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/01/31 04:32:16 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libftprintf.h"
+
+char	*ft_strndup(const char *s1, int n)
+{
+	char	*str;
+	size_t	i;
+
+	if (n <= 0)
+		return (ft_strdup(""));
+	if (!(str = malloc(sizeof(char) * (n + 1))))
+		return (NULL);
+	i = 0;
+	while (s1[i] && i < n)
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
 
 char	*ft_strdup(const char *s1)
 {

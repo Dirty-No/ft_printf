@@ -6,14 +6,34 @@
 /*   By: smaccary <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 00:15:48 by smaccary          #+#    #+#             */
-/*   Updated: 2020/01/31 03:38:22 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/01/31 05:35:03 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdarg.h>
 #include <stdlib.h>
 #include "libftprintf.h"
 
-int ft_printf(const char *format, ...)
+static int	print_to_flag(char **str)
+{
+	int i;
+
+	i = 0;
+	while ((*str)[i] && (*str)[i] != '%')
+		i++;
+	if ((*str)[i + 1] == '%')
+	{
+		i++;
+		write(1, *str, i);
+		*str += i + 1;
+		return (i + print_to_flag(str));
+	}
+	else if (i)
+		write(1, *str, i);
+	*str += i;
+	return (i);
+}
+
+int			 ft_printf(const char *format, ...)
 {
 	int		printed;
 	char	*str;

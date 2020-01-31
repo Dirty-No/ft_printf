@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 15:43:52 by smaccary          #+#    #+#             */
-/*   Updated: 2020/01/31 04:15:14 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/01/31 06:04:55 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct		s_printer
+typedef struct		s_infos
 {
-	const char *format;
-	int			i;
-}
+	char		space; // either '0' or ' '
+	int			width; 
+	int			precision;
+	char		pos; // 'l' if left justify if on
+}					t_infos;
 
+t_infos				get_infos(char *format, va_list *list);
+char				*ft_strndup(const char *s1, int n);
 char				*get_conv(char *format);
 char				**ft_getptr(char *str);
 int					ft_putstr_fd(char *s, int fd);
