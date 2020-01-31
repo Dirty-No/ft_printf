@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 21:57:02 by smaccary          #+#    #+#             */
-/*   Updated: 2020/01/31 04:32:16 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/01/31 06:38:53 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 char	*ft_strndup(const char *s1, int n)
 {
 	char	*str;
-	size_t	i;
+	int	i;
 
 	if (n <= 0)
 		return (ft_strdup(""));

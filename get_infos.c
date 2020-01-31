@@ -6,11 +6,11 @@
 /*   By: smaccary <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 05:10:23 by smaccary          #+#    #+#             */
-/*   Updated: 2020/01/31 06:03:54 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/01/31 07:11:51 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprint.h"
+#include "libftprintf.h"
 
 static int get_width(char *format, va_list *list)
 {
@@ -19,13 +19,14 @@ static int get_width(char *format, va_list *list)
 
 static int	get_precision(char *format, va_list *list)
 {
-	return ((format = ft_strchr(format, '.')) ? ft_atoi(format) : 0);
+	return ((format = ft_strchr(format, '.')) ? get_width(format + 1, list) : 0);
 }
 
 t_infos		get_infos(char *format, va_list *list)
 {
 	t_infos	infos;
-
+	if (*format)
+		++format;
 	if (*format == '-')
 	{
 		infos.pos = 'l';

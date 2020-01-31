@@ -6,7 +6,7 @@
 /*   By: smaccary <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 00:15:48 by smaccary          #+#    #+#             */
-/*   Updated: 2020/01/31 05:35:03 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/01/31 06:40:00 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdarg.h>
@@ -42,7 +42,7 @@ int			 ft_printf(const char *format, ...)
 	if (!format || !(str = ft_strdup(format)))
 		return (write(1, "(null)", 6));
 	printed = 0;
-	va_start(list);
+	va_start(list, format);
 	while (*str)
 	{
 		printed += print_to_flag(&str);
@@ -51,5 +51,5 @@ int			 ft_printf(const char *format, ...)
 	}
 	va_end(list);
 	free(str);
-	return (ret);
+	return (printed);
 }
