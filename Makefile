@@ -6,7 +6,7 @@
 #    By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 10:47:14 by smaccary          #+#    #+#              #
-#    Updated: 2020/01/31 03:44:55 by smaccary         ###   ########.fr        #
+#    Updated: 2020/01/31 04:16:07 by smaccary         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ ft_putnbr_fd.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
 ft_lstiter.c ft_lstmap.c ft_lstcpy.c \
 ft_printf.c printflag.c ft_putnbr_base.c \
-ft_getptr.c \
+ft_getptr.c get_conv.c\
 
 
 OBJ = $(SRC:.c=.o)
