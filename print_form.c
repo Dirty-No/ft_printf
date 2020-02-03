@@ -6,7 +6,7 @@
 /*   By: smaccary <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 04:00:46 by smaccary          #+#    #+#             */
-/*   Updated: 2020/01/31 07:12:10 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/03 18:45:50 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int	print_form(const char *format, va_list *list)
 		return (write(1, "ERROR", 5));
 	count = 0;
 	infos = get_infos(str, list);
-	printf("'%c' %d %d '%c'", infos.space, infos.width, infos.precision, infos.pos);
+	//printf("'%c' %d %d '%c' '%c'", infos.space, infos.width, infos.precision,
+	//	   	infos.pos, infos.conv);
+	
 	free(str);
 	return (count);
 }

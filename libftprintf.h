@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 15:43:52 by smaccary          #+#    #+#             */
-/*   Updated: 2020/01/31 06:40:59 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/03 16:58:05 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define HEX_BASE_LOW "0123456789abcdef"
 # define DEC_BASE "0123456789"
 # define CONV_TYPES "cspdiuxX"
+# define NUMERIC_TYPES "diuxX"
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>
@@ -33,6 +34,7 @@ typedef struct		s_infos
 	int			width; 
 	int			precision;
 	char		pos; // 'l' if left justify if on
+	char		conv;
 }					t_infos;
 
 int					print_form(const char *format, va_list *list);
