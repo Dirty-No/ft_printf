@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 05:10:23 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/07 13:55:50 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/07 16:48:50 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static t_infos check_infos(t_infos infos)
 t_infos			get_infos(char *format, va_list *list, ssize_t (*my_write)(int, const void *, size_t))
 {
 	t_infos	infos;
+
 	if (*format)
 		++format;
 	if (*format == '-')

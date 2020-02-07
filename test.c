@@ -2,22 +2,15 @@
 #include <stdlib.h>
 #include "libftprintf.h"
 
-/*
+
 void wrap_print_form(char *format, ...)
 {
 	va_list lst;
 	
 	va_start(lst, format);
-	print_form(format, &lst);
+	print_form(format, &lst, no_write);
 	va_end(lst);
 }
-
-int main(void)
-{
-	//wrap_print_form("%-50.100000d", 1234567);
-	return (0);
-}
-*/
 
 void tst_printf(char *format, ...)
 {
@@ -40,21 +33,6 @@ void tst_printf(char *format, ...)
 	va_end(cpy);
 	printf("\n#########\tRETURN VALUES\t###############\nft_printf:\t|%d|\nprintf:\t\t|%d|\n\n**********************************************\n", nb1, nb2);
 	fflush(stdout);
-}
-
-void hello_world(void)
-{
-	tst_printf("|Hello World!|");
-}
-
-void	solo_int(int nb)
-{
-	tst_printf("|%d|", nb);
-}
-
-void	null_format(void)
-{
-	tst_printf(NULL);
 }
 
 void	test1(void)
@@ -286,11 +264,27 @@ void test19(void)
 	printf("printf : %d | ft_printf %d\n", nb1, nb2);
 }
 
+void hello_world(void)
+{
+	tst_printf("|Hello World!|");
+}
+
+void	solo_int(int nb)
+{
+	tst_printf("|%d|", nb);
+}
+
+void	null_format(void)
+{
+	tst_printf(NULL);
+}
+
 int main(void)
 {
-	hello_world();
+	//wrap_print_form("%50.100000d", 1234567);
+//	hello_world();
 	solo_int(50);
-	null_format();
-	//system("leaks a.out");
+//	null_format();
 	return (0);
 }
+

@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 00:15:48 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/06 20:16:47 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/07 16:47:48 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int			 ft_vprintf(const char *format, va_list *list, ssize_t (*my_write)(int, co
 	while (*str)
 	{
 		printed += print_to_flag(&str, (*my_write));
-		str = get_conv(str);
+		str = ft_strchr(str, '%');
 		printed += (*str) ? print_form(str, list, (*my_write)) : 0;
 	}
 	va_end(*list);
