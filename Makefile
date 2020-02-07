@@ -6,7 +6,7 @@
 #    By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 10:47:14 by smaccary          #+#    #+#              #
-#    Updated: 2020/01/31 06:46:07 by smaccary         ###   ########.fr        #
+#    Updated: 2020/02/06 19:14:37 by smaccary         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,24 +14,24 @@ NAME = libftprintf.a
 
 CC = gcc
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra
 
 RM = rm -rf
 
 DIRSRC = ./
 
-SRC = ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
-ft_isprint.c ft_memccpy.c ft_memcpy.c ft_memchr.c ft_memmove.c \
-ft_memset.c  ft_strlcat.c ft_strlcpy.c ft_strlen.c \
-ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strchr.c ft_tolower.c \
-ft_toupper.c ft_memcmp.c ft_strnlen.c ft_atoi.c ft_strdup.c \
-ft_calloc.c ft_split.c ft_strjoin.c ft_substr.c ft_strtrim.c \
-ft_itoa.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-ft_putnbr_fd.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
-ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
-ft_lstiter.c ft_lstmap.c ft_lstcpy.c \
+SRC = lib/ft_bzero.c lib/ft_isalnum.c lib/ft_isalpha.c lib/ft_isascii.c lib/ft_isdigit.c \
+lib/ft_isprint.c lib/ft_memccpy.c lib/ft_memcpy.c lib/ft_memchr.c lib/ft_memmove.c \
+lib/ft_memset.c  lib/ft_strlcat.c lib/ft_strlcpy.c lib/ft_strlen.c \
+lib/ft_strncmp.c lib/ft_strnstr.c lib/ft_strrchr.c lib/ft_strchr.c lib/ft_tolower.c \
+lib/ft_toupper.c lib/ft_memcmp.c lib/ft_strnlen.c lib/ft_atoi.c lib/ft_strdup.c \
+lib/ft_calloc.c lib/ft_split.c lib/ft_strjoin.c lib/ft_substr.c lib/ft_strtrim.c \
+lib/ft_itoa.c lib/ft_strmapi.c lib/ft_putchar_fd.c lib/ft_putstr_fd.c lib/ft_putendl_fd.c \
+lib/ft_putnbr_fd.c lib/ft_lstnew.c lib/ft_lstadd_front.c lib/ft_lstsize.c \
+lib/ft_lstlast.c lib/ft_lstadd_back.c lib/ft_lstdelone.c lib/ft_lstclear.c \
+lib/ft_lstiter.c lib/ft_lstmap.c lib/ft_lstcpy.c \
 ft_printf.c  ft_putnbr_base.c \
-ft_getptr.c get_conv.c get_infos.c print_form.c\
+ft_getptr.c get_conv.c get_infos.c print_form.c printconv.c\
 
 
 OBJ = $(SRC:.c=.o)
@@ -46,15 +46,15 @@ bonus: $(OBJBONUS) $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-%.o: %.c %.h
+obj/%.o: %.c %.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ) $(OBJBONUS)
 
 fclean: clean
-		$(RM) $(NAME)
+	$(RM) $(NAME)
 
-re: fclean all
+re: fclean all	
 
 .PHONY: clean fclean

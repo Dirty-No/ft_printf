@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 10:57:27 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/03 19:28:02 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/05 17:54:36 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	ft_check_base(char *base)
 	return (i);
 }
 
-int			ft_putnbr_base_int(int nbr, char *base)
+int			ft_putnbr_base_int(int nbr, char *base, ssize_t (*my_write)(int, const void *, size_t))
 {
 	int base_type;
 	int count;
@@ -48,25 +48,25 @@ int			ft_putnbr_base_int(int nbr, char *base)
 		return (-1);
 	if (nbr == -2147483648)
 	{
-		count += ft_putnbr_base_int(-214748364, base);
-		write(1, &base[8], (++count) ? 1 : 1);
+		count += ft_putnbr_base_int(-214748364, base, (*my_write));
+		my_write(1, &base[8], (++count) ? 1 : 1);
 	}
 	else if (nbr < 0)
 	{
 		nbr *= -1;
-		write(1, "-", (++count) ? 1 : 1);
+		my_write(1, "-", (++count) ? 1 : 1);
 	}
 	if (nbr < base_type)
-		write(1, &base[nbr], (++count) ? 1 : 1);
+		my_write(1, &base[nbr], (++count) ? 1 : 1);
 	else
 	{
-		count += ft_putnbr_base_int(nbr / base_type, base);
-		count += ft_putnbr_base_int(nbr % base_type, base);
+		count += ft_putnbr_base_int(nbr / base_type, base, (*my_write));
+		count += ft_putnbr_base_int(nbr % base_type, base, (*my_write));
 	}
 	return (count);
 }
 
-int			ft_putnbr_base_u(size_t nbr, char *base)
+int			ft_putnbr_base_u(size_t nbr, char *base, ssize_t (*my_write)(int, const void *, size_t))
 {
 	size_t	base_type;
 	int		count;
@@ -76,15 +76,15 @@ int			ft_putnbr_base_u(size_t nbr, char *base)
 		return (-1);
 	if (nbr == (size_t)-2147483648)
 	{
-		count += ft_putnbr_base_u((size_t)-214748364, base);
-		write(1, &base[8], (++count) ? 1 : 1);
+		count += ft_putnbr_base_u((size_t)-214748364, base, (*my_write));
+		my_write(1, &base[8], (++count) ? 1 : 1);
 	}
 	if (nbr < base_type)
-		write(1, &base[nbr], (++count) ? 1 : 1);
+		my_write(1, &base[nbr], (++count) ? 1 : 1);
 	else
 	{
-		count += ft_putnbr_base_u(nbr / base_type, base);
-		count += ft_putnbr_base_u(nbr % base_type, base);
+		count += ft_putnbr_base_u(nbr / base_type, base, (*my_write));
+		count += ft_putnbr_base_u(nbr % base_type, base, (*my_write));
 	}
 	return (count);
 }

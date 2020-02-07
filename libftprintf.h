@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 15:43:52 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/03 16:58:05 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/07 13:56:11 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,14 @@ typedef struct		s_infos
 	int			precision;
 	char		pos; // 'l' if left justify if on
 	char		conv;
+	ssize_t 	(*printer)(int, const void *, size_t);
 }					t_infos;
 
-int					print_form(const char *format, va_list *list);
-t_infos				get_infos(char *format, va_list *list);
+int					ft_vprintf(const char *format, va_list *list, ssize_t (*my_write)(int, const void *, size_t));
+int					print_conv(t_infos infos, va_list *list);
+ssize_t				no_write(int filedes, const void *buf, size_t nbyte);
+int					print_form(const char *format, va_list *list, ssize_t (*my_write)(int, const void *, size_t));
+t_infos				get_infos(char *format, va_list *list, ssize_t (*my_write)(int, const void *, size_t));
 char				*ft_strndup(const char *s1, int n);
 char				*get_conv(char *format);
 char				**ft_getptr(char *str);
@@ -46,8 +50,8 @@ int					ft_putstr_fd(char *s, int fd);
 int					ft_printf(const char *format, ...);
 int					len_nbr_base_u(size_t nbr, char *base);
 int					len_nbr_base_int(int nbr, char *base);
-int					ft_putnbr_base_int(int nbr, char *base);
-int					ft_putnbr_base_u(size_t nbr, char *base);
+int					ft_putnbr_base_int(int nbr, char *base, ssize_t (*my_write)(int, const void *, size_t));
+int					ft_putnbr_base_u(size_t nbr, char *base, ssize_t (*my_write)(int, const void *, size_t));
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
