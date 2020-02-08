@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_conv.c                                         :+:      :+:    :+:   */
+/*   wrappers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/31 04:02:15 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/08 01:28:51 by smaccary         ###   ########.fr       */
+/*   Created: 2020/02/08 00:29:46 by smaccary          #+#    #+#             */
+/*   Updated: 2020/02/08 00:43:41 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char	*get_conv(char *format)
+int wp_ft_vprintf(char *format, ssize_t (*my_write)(int, const void *, size_t), ...)
 {
-	while (*format && !ft_strchr(CONV_TYPES, *format))
-		format++;
-	return ((*format) ? format : format - 1);
+	va_list lst;
+	int     count;
+
+	va_start(lst, my_write);
+	count = ft_vprintf(format, &lst, my_write);
+	va_end(lst);
+	return (count);
 }
 
-char	*get_format(char *format)
+int get_curr_int(va_list *lst)
 {
-	while (*format && *format != '%')
-		format++;
-	return (format);
+	va_list copy;
+	int		arg;
+	
+	va_copy(copy, *lst);
+	arg = (int)va_arg(copy, int);
+	va_end(copy);
+	return (arg);
 }

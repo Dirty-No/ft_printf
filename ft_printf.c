@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 00:15:48 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/07 16:47:48 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/08 01:25:18 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ ssize_t		no_write(int filedes, const void *buf, size_t nbyte)
 	(void)filedes;
 	(void)buf;
 	return (nbyte);
+}
+
+int			my_putchar(char c, ssize_t (*my_write)(int, const void *, size_t))
+{
+	return((*my_write)(1, &c, 1));
 }
 
 static int	print_to_flag(char **str, ssize_t (*my_write)(int, const void *, size_t))
@@ -50,11 +55,11 @@ int			 ft_vprintf(const char *format, va_list *list, ssize_t (*my_write)(int, co
 		return (my_write(1, "(null)", 6));
 	printed = 0;
 	str = buffer;
-	while (*str)
+	while (str && *str)
 	{
 		printed += print_to_flag(&str, (*my_write));
-		str = ft_strchr(str, '%');
-		printed += (*str) ? print_form(str, list, (*my_write)) : 0;
+		printed += (str && *str) ? print_form(str, list, (*my_write)) : 0;
+		str = get_conv(str) + 1;
 	}
 	va_end(*list);
 	free(buffer);	
@@ -65,6 +70,8 @@ int			ft_printf(const char *format, ...)
 {
 	va_list	list;
 
+	if (!format)
+		return (write(1, "(null)", 6));
 	va_start(list, format);
 	return (ft_vprintf(format, &list, write));
 }

@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 15:43:52 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/07 13:56:11 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/08 00:44:31 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ typedef struct		s_infos
 	ssize_t 	(*printer)(int, const void *, size_t);
 }					t_infos;
 
+int 				get_curr_int(va_list *lst);
+int					wp_ft_vprintf(char *format, ssize_t (*my_write)(int, const void *, size_t), ...);
+int					print_space(t_infos infos, va_list *list);
+int					print_space_str(char c, int size, ssize_t (*my_write)(int, const void *, size_t));
+t_infos				swp_printer(t_infos infos, ssize_t (*my_write)(int, const void *, size_t));
+int					my_putchar(char c, ssize_t (*my_write)(int, const void *, size_t));
+char				**ft_getptr(char *str);
+char				*get_format(char *format);
 int					ft_vprintf(const char *format, va_list *list, ssize_t (*my_write)(int, const void *, size_t));
 int					print_conv(t_infos infos, va_list *list);
 ssize_t				no_write(int filedes, const void *buf, size_t nbyte);

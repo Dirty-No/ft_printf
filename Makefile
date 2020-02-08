@@ -6,7 +6,7 @@
 #    By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 10:47:14 by smaccary          #+#    #+#              #
-#    Updated: 2020/02/06 19:14:37 by smaccary         ###   ########.fr        #
+#    Updated: 2020/02/08 00:35:29 by smaccary         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ lib/ft_itoa.c lib/ft_strmapi.c lib/ft_putchar_fd.c lib/ft_putstr_fd.c lib/ft_put
 lib/ft_putnbr_fd.c lib/ft_lstnew.c lib/ft_lstadd_front.c lib/ft_lstsize.c \
 lib/ft_lstlast.c lib/ft_lstadd_back.c lib/ft_lstdelone.c lib/ft_lstclear.c \
 lib/ft_lstiter.c lib/ft_lstmap.c lib/ft_lstcpy.c \
-ft_printf.c  ft_putnbr_base.c \
+ft_printf.c  ft_putnbr_base.c printspace.c wrappers.c\
 ft_getptr.c get_conv.c get_infos.c print_form.c printconv.c\
 
 

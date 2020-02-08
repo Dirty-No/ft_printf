@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 05:10:23 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/07 16:48:50 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/07 22:53:57 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,14 @@ static t_infos check_infos(t_infos infos)
 		infos.width *= -1;
 		infos.pos = 'l';
 	}
-	infos.pos = (infos.width < 0) ? 'l' : infos.pos;
 	infos.space = ((infos.space == '0' && infos.precision) || infos.pos	== 'l'
-		   	|| !ft_strchr(NUMERIC_TYPES, infos.conv)) ? ' ' : '0';
+		   	|| !ft_strchr(NUMERIC_TYPES, infos.conv)) ? ' ' : infos.space;
+	return (infos);
+}
+
+t_infos			swp_printer(t_infos infos, ssize_t (*my_write)(int, const void *, size_t))
+{
+	infos.printer = (*my_write);
 	return (infos);
 }
 
@@ -50,7 +55,7 @@ t_infos			get_infos(char *format, va_list *list, ssize_t (*my_write)(int, const 
 		infos.pos = 'r';
 	if (*format == '0')
 	{
-		infos.space = (infos.pos == 'r') ? '0' : ' ';
+		infos.space = (infos.pos == 'l') ? ' ' : '0';
 		format++;
 	}
 	else

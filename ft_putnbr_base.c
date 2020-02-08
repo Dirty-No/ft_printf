@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 10:57:27 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/05 17:54:36 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/08 01:18:32 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int			ft_putnbr_base_int(int nbr, char *base, ssize_t (*my_write)(int, const voi
 	int count;
 
 	count = 0;
-	if (!(base_type = ft_check_base(base)))
-		return (-1);
+	if (!((base_type = ft_check_base(base))))
+		return (0);
 	if (nbr == -2147483648)
 	{
 		count += ft_putnbr_base_int(-214748364, base, (*my_write));
@@ -73,7 +73,7 @@ int			ft_putnbr_base_u(size_t nbr, char *base, ssize_t (*my_write)(int, const vo
 
 	count = 0;
 	if (!(base_type = ft_check_base(base)))
-		return (-1);
+		return (0);
 	if (nbr == (size_t)-2147483648)
 	{
 		count += ft_putnbr_base_u((size_t)-214748364, base, (*my_write));
@@ -88,48 +88,4 @@ int			ft_putnbr_base_u(size_t nbr, char *base, ssize_t (*my_write)(int, const vo
 	}
 	return (count);
 }
-
-int			len_nbr_base_u(size_t nbr, char *base)
-{
-	size_t	base_type;
-	int		count;
-
-	count = 0;
-	if (!(base_type = ft_check_base(base)))
-		return (-1);
-	if (nbr == (size_t)-2147483648)
-		count += 1 + len_nbr_base_u((size_t)-214748364, base);
-	if (nbr < base_type)
-		++count;
-	else
-	{
-		count += len_nbr_base_u(nbr / base_type, base);
-		count += len_nbr_base_u(nbr % base_type, base);
-	}
-	return (count);
-}
-
-int			len_nbr_base_int(int nbr, char *base)
-{
-	int base_type;
-	int count;
-
-	count = 0;
-	if (!(base_type = ft_check_base(base)))
-		return (-1);
-	if (nbr == -2147483648)
-		count += 1 + len_nbr_base_int(-214748364, base);
-	else if (nbr < 0)
-	{
-		nbr *= -1;
-		++count;
-	}
-	if (nbr < base_type)
-		++count;
-	else
-	{
-		count += len_nbr_base_int(nbr / base_type, base);
-		count += len_nbr_base_int(nbr % base_type, base);
-	}
-	return (count);
-}
+	

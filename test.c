@@ -21,17 +21,18 @@ void tst_printf(char *format, ...)
 
 	va_start(lst, format);
 	va_copy(cpy, lst);
-	printf("\n##########\tFORMAT : (%s)\t###############\n\nft_printf:\t", format);
+	printf("\033[1;35m\n###############\t\tFORMAT : (%s)\t###############\n\033[1;32mprintf:\t\t", format);
 	fflush(stdout);
-	nb1 = ft_vprintf(format, &lst, write);
+	nb1 = vprintf(format, lst);
 	fflush(stdout);
-	printf("\nprintf:\t\t");
-	nb2 = vprintf(format, cpy);
+	printf("\033[1;36m\nft_printf:\t");
+	fflush(stdout);
+	nb2 = ft_vprintf(format, &cpy, write);
 	printf("\n");
 	fflush(stdout);
 	va_end(lst);
 	va_end(cpy);
-	printf("\n#########\tRETURN VALUES\t###############\nft_printf:\t|%d|\nprintf:\t\t|%d|\n\n**********************************************\n", nb1, nb2);
+	printf("\033[1;35m\n###############\t\tRETURN VALUES\t\t###############\n\033[1;32mprintf:\t\t|%d|\n\033[1;36mft_printf:\t|%d|\n\n\033[1;34m***************************************************************\n\033[0m", nb1, nb2);
 	fflush(stdout);
 }
 
@@ -89,6 +90,7 @@ void test5(void)
 	char	*ptr = malloc(1);
 
 	nb1 = printf(str, 'P', 3, ptr, 756, "JE SUIS UNE PETITE SOURIS AHAHA", NULL, 500, 9, 10, 7777);
+	fflush(stdout);
 	nb2 = ft_printf(str, 'P', 3, ptr, 756, "JE SUIS UNE PETITE SOURIS AHAHA", NULL, 500, 9, 10, 7777);
 	printf("%d|%d\n", nb1, nb2);	
 
@@ -144,6 +146,7 @@ void test9(void)
 
 void test10(void)
 {
+	//undefined
 	int		nb1;
 	int		nb2;
 	char	str[]= "|%-1-5.10p|  |%-1-5.10X|\n";
@@ -276,15 +279,18 @@ void	solo_int(int nb)
 
 void	null_format(void)
 {
+	///UNDEFINED (real printf segfaults)
 	tst_printf(NULL);
 }
 
 int main(void)
 {
-	//wrap_print_form("%50.100000d", 1234567);
-//	hello_world();
-	solo_int(50);
-//	null_format();
+//	wrap_print_form("%50.100000d", 1234567);
+	hello_world();
+//	solo_int(50);
+//	tst_printf("|%-0*d|", 10, -1234567);
+//	test2();
+//	test1();
+	system("leaks a.out");
 	return (0);
 }
-

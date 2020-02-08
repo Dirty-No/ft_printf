@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:06:07 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/05 21:10:27 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/08 01:21:32 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 static int	print_p(void *ptr, t_infos infos)
 {
 	infos.printer(1, "0x", 2);
-	return (ft_putnbr_base_u((size_t)ptr, HEX_BASE_LOW, ptr) + 2);
+	return (ft_putnbr_base_u((size_t)ptr, HEX_BASE_LOW, infos.printer) + 2);
 }
 
 static int	print_s(char *str, t_infos infos)
 {
 	return ((str) ? infos.printer(1, str, ft_strlen(str)) :
-	 infos.printer(1, str, ft_strlen(str)));
+	 infos.printer(1, "(null)", 6));
 }
 
 static int	print_conv_2(char c, va_list *list, t_infos infos)
@@ -48,12 +48,14 @@ static int	print_conv_2(char c, va_list *list, t_infos infos)
 
 int			print_conv(t_infos infos, va_list *list)
 {
+	if (!ft_strchr(CONV_TYPES, infos.conv) && infos.conv != '%')
+		return (0);
 	if (infos.conv == 'c')
-		return (infos.printer(1, infos.conv, 1));
+		return (my_putchar((char)va_arg(*list, int), infos.printer));
 	else if (infos.conv == 's')
 		return (print_s((char *)va_arg(*list, char *), infos));
 	else if (infos.conv == '%')
 		return (infos.printer(1, "%", 1));
-	else if (ft_strchr("pdiuxX", infos.conv))
+	else
 		return (print_conv_2(infos.conv, list, infos));
 }
