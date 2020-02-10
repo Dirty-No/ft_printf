@@ -286,11 +286,8 @@ void	null_format(void)
 int main(void)
 {
 //	wrap_print_form("%50.100000d", 1234567);
-	hello_world();
 //	solo_int(50);
-//	tst_printf("|%-0*d|", 10, -1234567);
-//	test2();
-//	test1();
-	system("leaks a.out");
+	tst_printf("|%10.*d|", 10, -1234567);
+	//system("leaks a.out");
 	return (0);
 }

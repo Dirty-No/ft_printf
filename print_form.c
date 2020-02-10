@@ -6,29 +6,32 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 04:00:46 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/07 22:23:42 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/10 13:02:36 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdio.h>
 
+int handler(t_infos infos, va_list *list)
+{
+	if (infos.width && !(infos.precision))
+		return (print_space(&infos, list));
+	else if (infos.precision)
+		return (print_dot(&infos, list));
+	else if (!infos.width && !infos.precision)
+		return (print_conv(infos, list));
+}
+
 int	print_form(const char *format, va_list *list, ssize_t (*my_write)(int, const void *, size_t))
 {
 	char	*str;
-	int		count;
 	t_infos infos;
 
 	if (!(str = ft_substr(format, 0, get_conv((char *)format) + 1 - format)))
 		return (my_write(1, "ERROR", 5));
-	count = 0;
 	infos = get_infos(str, list, (*my_write));
-//	printf("INFOS('%c' %d %d '%c' '%c') + %s", infos.space, infos.width, infos.precision,
-//		 	infos.pos, infos.conv, str);
-	if (!infos.width && !infos.precision)
-		count += print_conv(infos, list);
-	else if (infos.width && !(infos.precision))
-		count += print_space(infos, list);
 	free(str);
-	return (count);
+	return (handler(infos, list));
 }
+
