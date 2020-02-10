@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 00:15:48 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/08 01:25:18 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:17:42 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ int			 ft_vprintf(const char *format, va_list *list, ssize_t (*my_write)(int, co
 		return (my_write(1, "(null)", 6));
 	printed = 0;
 	str = buffer;
+	printed += print_to_flag(&str, (*my_write));
 	while (str && *str)
 	{
-		printed += print_to_flag(&str, (*my_write));
 		printed += (str && *str) ? print_form(str, list, (*my_write)) : 0;
 		str = get_conv(str) + 1;
+		printed += print_to_flag(&str, (*my_write));
 	}
 	va_end(*list);
 	free(buffer);	

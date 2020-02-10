@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 05:10:23 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/08 17:44:51 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:39:54 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		get_precision(char *format, va_list *list)
 	return ((format = ft_strchr(format, '.')) ? get_width(format + 1, list) : 0);
 }
 
-static t_infos check_infos(t_infos infos)
+t_infos			check_infos(t_infos infos)
 {
 	if (infos.width < 0)
 	{
@@ -53,13 +53,12 @@ t_infos			get_infos(char *format, va_list *list, ssize_t (*my_write)(int, const 
 	}
 	else
 		infos.pos = 'r';
-	if (*format == '0')
+	while (*format == '0')
 	{
 		infos.space = (infos.pos == 'l') ? ' ' : '0';
 		format++;
 	}
-	else
-		infos.space = ' ';
+	infos.space = (infos.space) ?:' ';
 	infos.width = get_width(format, list);
 	infos.precision = get_precision(format, list);
 	infos.conv = *get_conv(format);

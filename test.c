@@ -29,7 +29,6 @@ void tst_printf(char *format, ...)
 	fflush(stdout);
 	nb2 = ft_vprintf(format, &cpy, write);
 	printf("\n");
-	fflush(stdout);
 	va_end(lst);
 	va_end(cpy);
 	printf("\033[1;35m\n###############\t\tRETURN VALUES\t\t###############\n\033[1;32mprintf:\t\t|%d|\n\033[1;36mft_printf:\t|%d|\n\n\033[1;34m***************************************************************\n\033[0m", nb1, nb2);
@@ -287,7 +286,8 @@ int main(void)
 {
 //	wrap_print_form("%50.100000d", 1234567);
 //	solo_int(50);
-	tst_printf("|%10.*d|", 10, -1234567);
+//	tst_printf("|%00*d|", 10, 7777);
 	//system("leaks a.out");
+	test1();
 	return (0);
 }
