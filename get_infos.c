@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 05:10:23 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/10 15:39:54 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/11 00:20:04 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_infos			get_infos(char *format, va_list *list, ssize_t (*my_write)(int, const 
 	infos.precision = get_precision(format, list);
 	infos.conv = *get_conv(format);
 	infos.printer = (*my_write);
+	infos.dot = ft_strchr(format, '.');
 	infos = check_infos(infos);
 	return (infos);
 }
