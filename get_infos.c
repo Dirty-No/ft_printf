@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 05:10:23 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/11 18:33:58 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/11 20:39:47 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_infos			check_infos(t_infos infos)
 		infos.width *= -1;
 		infos.pos = 'l';
 	}
+	if (infos.precision < 0)
+		infos.precision = infos.precision * -1 + 1;
 	infos.space = ((infos.space == '0' && infos.precision) || infos.pos	== 'l'
 		   	|| !ft_strchr(NUMERIC_TYPES, infos.conv)) ? ' ' : infos.space;
 	if (infos.conv == 's')
