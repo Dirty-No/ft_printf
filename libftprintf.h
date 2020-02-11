@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 15:43:52 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/11 00:19:22 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/11 00:35:36 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_infos
 	char		pos; // 'l' if left justify if on
 	char		conv;
 	char 		*dot;
+	int 		trunc;
 	ssize_t 	(*printer)(int, const void *, size_t);
 }					t_infos;
 

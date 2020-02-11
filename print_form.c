@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 04:00:46 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/10 15:16:46 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/11 16:52:33 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 int	handler(t_infos infos, va_list *list)
 {
-	if (infos.width)
+	if (infos.width || infos.precision)
 		return (print_space(&infos, list));
 //	else if (infos.precision)
 	//	return (print_dot(&infos, list));
-	else if (!infos.width && !infos.precision)
+	else
 		return (print_conv(infos, list));
 	return (0);
 }

@@ -48,7 +48,8 @@ HOHOOHOHOH MINNIE VOYONS QU'EST-CE QUE TU FAISs--d- \
 
 	printf("\nprintf (%d) \n", printf(str, 'P', 3, ptr, 756,
 			   	"JE SUIS UNE PETITE SOURIS AHAHA", NULL, 500,
-			   	9, 10, 7777, 123456789, -123456789, 123456789));	
+			   	9, 10, 7777, 123456789, -123456789, 123456789));
+	free(ptr);
 }
 
 void	test2(void)
@@ -286,8 +287,8 @@ int main(void)
 {
 //	wrap_print_form("%50.100000d", 1234567);
 //	solo_int(50);
-//	tst_printf("|%00*d|", 10, 7777);
-	//system("leaks a.out");
-	test1();
+	tst_printf("%07i", -54);
+//	test1();
+//	system("leaks a.out");
 	return (0);
 }
