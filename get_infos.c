@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 05:10:23 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/11 17:22:59 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/11 18:33:58 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_infos			get_infos(char *format, va_list *list, ssize_t (*my_write)(int, const 
 	infos.printer = (*my_write);
 	infos.dot = ft_strchr(format, '.');
 	infos.trunc = infos.precision;
-	if (ft_strchr("di", infos.conv) && infos.space == '0' && get_curr_int(list) < 0)
+	if (ft_strchr("di", infos.conv) && infos.space == '0' && !infos.dot && get_curr_int(list) < 0)
 		infos.width = (infos.width - 1 >= 0)
 		 ? infos.width - 1 : infos.width;
 	infos = check_infos(infos);

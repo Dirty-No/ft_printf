@@ -287,7 +287,7 @@ int main(void)
 {
 //	wrap_print_form("%50.100000d", 1234567);
 //	solo_int(50);
-	tst_printf("%07i", -54);
+	tst_printf("%010.5i", -216);
 //	test1();
 //	system("leaks a.out");
 	return (0);
