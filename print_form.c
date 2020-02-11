@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 04:00:46 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/11 18:50:51 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/11 18:52:35 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	handler(t_infos infos, va_list *list)
 {
 	
-	if (ft_strchr("udi", infos.conv) && !infos.width && infos.dot
+	if (ft_strchr("udixX", infos.conv) && !infos.width && infos.dot
 	 && !get_curr_int(list))
 	{
 		(void)va_arg(*list, int);
