@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 10:57:27 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/08 01:18:32 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/11 19:42:59 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ int			ft_putnbr_base_int(int nbr, char *base, ssize_t (*my_write)(int, const voi
 	if (nbr == -2147483648)
 	{
 		count += ft_putnbr_base_int(-214748364, base, (*my_write));
-		my_write(1, &base[8], (++count) ? 1 : 1);
+		count += my_write(1, &base[8], 1) + 1;
 	}
 	else if (nbr < 0)
 	{
 		nbr *= -1;
-		my_write(1, "-", (++count) ? 1 : 1);
+		count += my_write(1, "-", 1);
 	}
 	if (nbr < base_type)
-		my_write(1, &base[nbr], (++count) ? 1 : 1);
+		count += my_write(1, &base[nbr], 1);
 	else
 	{
 		count += ft_putnbr_base_int(nbr / base_type, base, (*my_write));
@@ -77,10 +77,10 @@ int			ft_putnbr_base_u(size_t nbr, char *base, ssize_t (*my_write)(int, const vo
 	if (nbr == (size_t)-2147483648)
 	{
 		count += ft_putnbr_base_u((size_t)-214748364, base, (*my_write));
-		my_write(1, &base[8], (++count) ? 1 : 1);
+		count += my_write(1, &base[8], 1) + 1;
 	}
 	if (nbr < base_type)
-		my_write(1, &base[nbr], (++count) ? 1 : 1);
+		count += my_write(1, &base[nbr], 1);
 	else
 	{
 		count += ft_putnbr_base_u(nbr / base_type, base, (*my_write));
