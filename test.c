@@ -21,14 +21,16 @@ void tst_printf(char *format, ...)
 
 	va_start(lst, format);
 	va_copy(cpy, lst);
-	printf("\033[1;35m\n###############\t\tFORMAT : (%s)\t###############\n\033[1;32mprintf:\t\t", format);
+	printf("\033[1;35m\n###############\t\tFORMAT : (%s)\t###############\n\033[1;32mprintf:\t\t|", format);
 	fflush(stdout);
 	nb1 = vprintf(format, lst);
 	fflush(stdout);
-	printf("\033[1;36m\nft_printf:\t");
+	write(1, "|", 1);
+	fflush(stdout);
+	printf("\033[1;36m\nft_printf:\t|");
 	fflush(stdout);
 	nb2 = ft_vprintf(format, &cpy, write);
-	printf("\n");
+	printf("|\n");
 	va_end(lst);
 	va_end(cpy);
 	printf("\033[1;35m\n###############\t\tRETURN VALUES\t\t###############\n\033[1;32mprintf:\t\t|%d|\n\033[1;36mft_printf:\t|%d|\n\n\033[1;34m***************************************************************\n\033[0m", nb1, nb2);
@@ -287,7 +289,7 @@ int main(void)
 {
 //	wrap_print_form("%50.100000d", 1234567);
 //	solo_int(50);
-	tst_printf("%-*.*s", -7, -3, "yolo");
+	tst_printf("%u", 9000000000);
 //	test1();
 //	system("leaks a.out");
 	return (0);

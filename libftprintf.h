@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 15:43:52 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/11 00:35:36 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/12 10:34:38 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define HEX_BASE_LOW "0123456789abcdef"
 # define DEC_BASE "0123456789"
 # define CONV_TYPES "cspdiuxX"
-# define NUMERIC_TYPES "diuxX"
+# define NUMERIC_TYPES "diuxX%"
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>

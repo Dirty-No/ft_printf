@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:06:07 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/11 19:24:29 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/12 11:07:15 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	print_conv_2(char c, va_list *list, t_infos infos)
 		printed += ft_putnbr_base_int(va_arg(*list, int), DEC_BASE, infos.printer);
 	else if (c == 'u')
 		printed += ft_putnbr_base_u(
-			(size_t)va_arg(*list, size_t), DEC_BASE, infos.printer);
+			(unsigned int)va_arg(*list, unsigned int), DEC_BASE, infos.printer);
 	else if (c == 'x')
 		printed += ft_putnbr_base_u(
 			(size_t)va_arg(*list, size_t), HEX_BASE_LOW, infos.printer);
