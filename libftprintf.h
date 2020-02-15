@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 15:43:52 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/12 10:34:38 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/15 15:07:37 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define HEX_BASE_LOW "0123456789abcdef"
 # define DEC_BASE "0123456789"
 # define CONV_TYPES "cspdiuxX"
-# define NUMERIC_TYPES "diuxX%"
+# define NUMERIC_TYPES "pdiuxX%"
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>
@@ -30,32 +30,39 @@ typedef struct		s_list
 
 typedef struct		s_infos
 {
-	char		space; // either '0' or ' '
-	int			width; 
+	char		space;
+	int			width;
 	int			precision;
-	char		pos; // 'l' if left justify if on
+	char		pos;
 	char		conv;
-	char 		*dot;
-	int 		trunc;
-	ssize_t 	(*printer)(int, const void *, size_t);
+	char		*dot;
+	int			trunc;
+	ssize_t		(*printer)(int, const void *, size_t);
 }					t_infos;
 
 t_infos				check_infos(t_infos infos);
-int 				handler(t_infos infos, va_list *list);
+int					handler(t_infos infos, va_list *list);
 int					print_dot(t_infos *infos, va_list *list);
-int 				get_curr_int(va_list *lst);
-int					wp_ft_vprintf(char *format, ssize_t (*my_write)(int, const void *, size_t), ...);
+int					get_curr_int(va_list *lst);
+int					wp_ft_vprintf(char *format,
+	ssize_t (*my_write)(int, const void *, size_t), ...);
 int					print_space(t_infos *infos, va_list *list);
-int					print_space_str(char c, int size, ssize_t (*my_write)(int, const void *, size_t));
-t_infos				swp_printer(t_infos infos, ssize_t (*my_write)(int, const void *, size_t));
-int					my_putchar(char c, ssize_t (*my_write)(int, const void *, size_t));
+int					print_space_str(char c, int size,
+	ssize_t (*my_write)(int, const void *, size_t));
+t_infos				swp_printer(t_infos infos,
+	ssize_t (*my_write)(int, const void *, size_t));
+int					my_putchar(char c,
+	ssize_t (*my_write)(int, const void *, size_t));
 char				**ft_getptr(char *str);
 char				*get_format(char *format);
-int					ft_vprintf(const char *format, va_list *list, ssize_t (*my_write)(int, const void *, size_t));
+int					ft_vprintf(const char *format, va_list *list,
+	ssize_t (*my_write)(int, const void *, size_t));
 int					print_conv(t_infos infos, va_list *list);
 ssize_t				no_write(int filedes, const void *buf, size_t nbyte);
-int					print_form(const char *format, va_list *list, ssize_t (*my_write)(int, const void *, size_t));
-t_infos				get_infos(char *format, va_list *list, ssize_t (*my_write)(int, const void *, size_t));
+int					print_form(const char *format, va_list *list,
+	ssize_t (*my_write)(int, const void *, size_t));
+t_infos				get_infos(char *format, va_list *list,
+	ssize_t (*my_write)(int, const void *, size_t));
 char				*ft_strndup(const char *s1, int n);
 char				*get_conv(char *format);
 char				**ft_getptr(char *str);
@@ -63,8 +70,10 @@ int					ft_putstr_fd(char *s, int fd);
 int					ft_printf(const char *format, ...);
 int					len_nbr_base_u(size_t nbr, char *base);
 int					len_nbr_base_int(int nbr, char *base);
-int					ft_putnbr_base_int(int nbr, char *base, ssize_t (*my_write)(int, const void *, size_t));
-int					ft_putnbr_base_u(size_t nbr, char *base, ssize_t (*my_write)(int, const void *, size_t));
+int					ft_putnbr_base_int(int nbr, char *base,
+	ssize_t (*my_write)(int, const void *, size_t));
+int					ft_putnbr_base_u(size_t nbr, char *base,
+	ssize_t (*my_write)(int, const void *, size_t));
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);

@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:06:07 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/12 11:07:15 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/15 14:37:36 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	print_s(char *str, t_infos infos)
 		str = "(null)";
 	len = ft_strlen(str);
 	return (infos.printer(1, str,
-	 ((int)len < infos.trunc || !infos.dot) ? len : infos.trunc));
+		((int)len < infos.trunc || !infos.dot) ? len : infos.trunc));
 }
 
 static int	print_conv_2(char c, va_list *list, t_infos infos)
@@ -38,7 +38,8 @@ static int	print_conv_2(char c, va_list *list, t_infos infos)
 	if (c == 'p')
 		printed += print_p((void *)va_arg(*list, void *), infos);
 	if (c == 'd' || c == 'i')
-		printed += ft_putnbr_base_int(va_arg(*list, int), DEC_BASE, infos.printer);
+		printed += ft_putnbr_base_int(va_arg(*list, int),
+			DEC_BASE, infos.printer);
 	else if (c == 'u')
 		printed += ft_putnbr_base_u(
 			(unsigned int)va_arg(*list, unsigned int), DEC_BASE, infos.printer);

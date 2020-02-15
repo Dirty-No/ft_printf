@@ -285,12 +285,44 @@ void	null_format(void)
 	tst_printf(NULL);
 }
 
+void	mazoise_2(void)
+{
+		int		a = -4;
+	int		b = 0;
+	char	c = 'a';
+	int		d = 2147483647;
+	int		e = -2147483648;
+	int		f = 42;
+	int		g = 25;
+	int		h = 4200;
+	int		i = 8;
+	int		j = -12;
+	int		k = 123456789;
+	int		l = 0;
+	int		m = -12345678;
+	char	*n = "abcdefghijklmnop";
+	char	*o = "-a";
+	char	*p = "-12";
+	char	*q = "0";
+	char	*r = "%%";
+	char	*s = "-2147483648";
+	char	*t = "0x12345678";
+	char	*u = "-0";
+
+	ft_printf(" --- Return : %d\n", ft_printf("Simple input test\n"));
+	fflush(stdout);
+	ft_printf(" --- Return : %d\n", ft_printf("%i, %d, %d, %d, %d, %s, %c, %d, %u, %x, %X\n", i, j, k, l, m, n, c, c, j, j, j)); //T2
+	fflush(stdout);
+}
+
 int main(void)
 {
+	const char format[] = "this %s is %s";
 //	wrap_print_form("%50.100000d", 1234567);
 //	solo_int(50);
-	tst_printf("%u", 9000000000);
 //	test1();
-//	system("leaks a.out");
+	mazoise_2();
+	//tst_printf("%7.7s%3.7s", "hello", "world");
+	//system("leaks a.out");
 	return (0);
 }

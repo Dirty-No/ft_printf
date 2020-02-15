@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 10:57:27 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/11 19:42:59 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/15 14:30:00 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static int	ft_check_base(char *base)
 	return (i);
 }
 
-int			ft_putnbr_base_int(int nbr, char *base, ssize_t (*my_write)(int, const void *, size_t))
+int			ft_putnbr_base_int(int nbr, char *base,
+	ssize_t (*my_write)(int, const void *, size_t))
 {
 	int base_type;
 	int count;
@@ -66,7 +67,8 @@ int			ft_putnbr_base_int(int nbr, char *base, ssize_t (*my_write)(int, const voi
 	return (count);
 }
 
-int			ft_putnbr_base_u(size_t nbr, char *base, ssize_t (*my_write)(int, const void *, size_t))
+int			ft_putnbr_base_u(size_t nbr, char *base,
+	ssize_t (*my_write)(int, const void *, size_t))
 {
 	size_t	base_type;
 	int		count;
@@ -88,4 +90,3 @@ int			ft_putnbr_base_u(size_t nbr, char *base, ssize_t (*my_write)(int, const vo
 	}
 	return (count);
 }
-	

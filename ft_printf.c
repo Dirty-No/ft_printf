@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 00:15:48 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/10 14:17:42 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/15 15:31:08 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,21 @@ ssize_t		no_write(int filedes, const void *buf, size_t nbyte)
 	return (nbyte);
 }
 
-int			my_putchar(char c, ssize_t (*my_write)(int, const void *, size_t))
+int			my_putchar(char c,
+	ssize_t (*my_write)(int, const void *, size_t))
 {
-	return((*my_write)(1, &c, 1));
+	return ((*my_write)(1, &c, 1));
 }
 
-static int	print_to_flag(char **str, ssize_t (*my_write)(int, const void *, size_t))
+static int	print_to_flag(char **str,
+	ssize_t (*my_write)(int, const void *, size_t))
 {
 	int i;
 
 	i = 0;
 	while ((*str)[i] && (*str)[i] != '%')
 		i++;
-	if ((*str)[i + 1] == '%')
+	if ((*str)[i] && (*str)[i + 1] == '%')
 	{
 		i++;
 		my_write(1, *str, i);
@@ -45,25 +47,21 @@ static int	print_to_flag(char **str, ssize_t (*my_write)(int, const void *, size
 	return (i);
 }
 
-int			 ft_vprintf(const char *format, va_list *list, ssize_t (*my_write)(int, const void *, size_t))
+int			ft_vprintf(const char *format, va_list *list,
+	ssize_t (*my_write)(int, const void *, size_t))
 {
 	int		printed;
-	char	*buffer;
-	char	*str;
 
-	if (!format || !(buffer = ft_strdup(format)))
+	if (!format)
 		return (my_write(1, "(null)", 6));
-	printed = 0;
-	str = buffer;
-	printed += print_to_flag(&str, (*my_write));
-	while (str && *str)
+	printed = print_to_flag((char **)&format, (*my_write));
+	while (*format)
 	{
-		printed += (str && *str) ? print_form(str, list, (*my_write)) : 0;
-		str = get_conv(str) + 1;
-		printed += print_to_flag(&str, (*my_write));
+		printed += print_form(format, list, (*my_write));
+		format = get_conv(((char *)format)) + 1;
+		printed += (*format) ? print_to_flag((char **)&format, (*my_write)) : 0;
 	}
 	va_end(*list);
-	free(buffer);	
 	return (printed);
 }
 
