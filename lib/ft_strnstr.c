@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stddef.h>
-#include "libftprintf.h"
+#include "../libftprintf.h"
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {

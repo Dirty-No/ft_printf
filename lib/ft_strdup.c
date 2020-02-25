@@ -6,12 +6,12 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 21:57:02 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/15 16:11:02 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:06:28 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libftprintf.h"
+#include "../libftprintf.h"
 
 char	*ft_strndup(const char *s1, int n)
 {

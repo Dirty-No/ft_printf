@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 15:43:52 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/15 15:07:37 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:59:57 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct		s_infos
 	ssize_t		(*printer)(int, const void *, size_t);
 }					t_infos;
 
-t_infos				check_infos(t_infos infos);
+t_infos				check_infos(t_infos infos, va_list *list);
 int					handler(t_infos infos, va_list *list);
 int					print_dot(t_infos *infos, va_list *list);
 int					get_curr_int(va_list *lst);

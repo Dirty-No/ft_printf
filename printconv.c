@@ -6,11 +6,12 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:06:07 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/15 14:37:36 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/24 15:18:30 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 #include <stdarg.h>
 
 static int	print_p(void *ptr, t_infos infos)
@@ -38,17 +39,17 @@ static int	print_conv_2(char c, va_list *list, t_infos infos)
 	if (c == 'p')
 		printed += print_p((void *)va_arg(*list, void *), infos);
 	if (c == 'd' || c == 'i')
-		printed += ft_putnbr_base_int(va_arg(*list, int),
+		printed += ft_putnbr_base_int((long long)va_arg(*list, int),
 			DEC_BASE, infos.printer);
 	else if (c == 'u')
 		printed += ft_putnbr_base_u(
 			(unsigned int)va_arg(*list, unsigned int), DEC_BASE, infos.printer);
 	else if (c == 'x')
 		printed += ft_putnbr_base_u(
-			(size_t)va_arg(*list, size_t), HEX_BASE_LOW, infos.printer);
+			(size_t)va_arg(*list, unsigned int), HEX_BASE_LOW, infos.printer);
 	else if (c == 'X')
 		printed += ft_putnbr_base_u(
-			(size_t)va_arg(*list, size_t), HEX_BASE_UP, infos.printer);
+			(size_t)va_arg(*list, unsigned int), HEX_BASE_UP, infos.printer);
 	return (printed);
 }
 

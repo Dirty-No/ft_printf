@@ -6,29 +6,32 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 04:00:46 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/15 14:32:07 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:23:31 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
 int	handler(t_infos infos, va_list *list)
 {
 	int ret;
 
-	if (ft_strchr("pudixX", infos.conv) && !infos.width && infos.dot
+	ret = 0;
+	if (ft_strchr("pudixX", infos.conv) && infos.dot
 		&& !get_curr_int(list))
 	{
 		(void)va_arg(*list, int);
-		ret = (infos.conv == 'p') ? infos.printer(1, "0x", 2) : 0;
-		return (ret + print_space_str('0', infos.precision, infos.printer));
+		ret = (infos.pos == 'r') ? print_space_str(' ', infos.width -
+			infos.precision - 2 * (infos.conv == 'p'), infos.printer) : 0;
+		ret += (infos.conv == 'p') ? infos.printer(1, "0x", 2) : 0;
+		ret += print_space_str('0', infos.precision, infos.printer);
+		ret += (infos.pos == 'l') ? print_space_str(' ', infos.width -
+			infos.precision - 2 * (infos.conv == 'p'), infos.printer) : 0;
+		return (ret);
 	}
 	if (infos.width || infos.precision)
 		return (print_space(&infos, list));
-	else
-		return (print_conv(infos, list));
-	return (0);
+	return (print_conv(infos, list));
 }
 
 int	print_form(const char *format, va_list *list,

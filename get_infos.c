@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/31 05:10:23 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/15 14:30:56 by smaccary         ###   ########.fr       */
+/*   Created: 2020/02/25 16:02:44 by smaccary          #+#    #+#             */
+/*   Updated: 2020/02/25 16:02:54 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ static int		get_width(char *format, va_list *list)
 
 static int		get_precision(char *format, va_list *list)
 {
-	return ((format = ft_strchr(format, '.'))
+	return ((format = ft_strrchr(format, '.'))
 		? get_width(format + 1, list) : 0);
 }
 
-t_infos			check_infos(t_infos infos)
+t_infos			check_infos(t_infos infos, va_list *list)
 {
+	(void)list;
 	if (infos.width < 0)
 	{
 		infos.width *= -1;
@@ -35,7 +36,8 @@ t_infos			check_infos(t_infos infos)
 		infos.precision = 0;
 		infos.dot = 0;
 	}
-	infos.space = ((infos.space == '0' && infos.precision) || infos.pos == 'l'
+	infos.space = ((infos.space == '0' && infos.dot && !infos.width)
+		|| infos.pos == 'l'
 		|| !ft_strchr(NUMERIC_TYPES, infos.conv)) ? ' ' : infos.space;
 	if (infos.conv == 's')
 	{
@@ -54,12 +56,17 @@ static t_infos	get_infos2(char *format, va_list *list, t_infos infos,
 	infos.conv = *get_conv(format);
 	infos.printer = (*my_write);
 	infos.dot = ft_strchr(format, '.');
+	infos.dot = (infos.precision < 0) ? 0 : infos.dot;
+	infos.precision = (infos.precision < 0) ? 0 : infos.precision;
 	infos.trunc = infos.precision;
 	if (ft_strchr("di", infos.conv) && infos.space == '0'
 		&& !infos.dot && get_curr_int(list) < 0)
 		infos.width = (infos.width - 1 >= 0)
 			? infos.width - 1 : infos.width;
-	infos = check_infos(infos);
+	infos = check_infos(infos, list);
+	infos.space = (!ft_strchr(NUMERIC_TYPES, infos.conv)
+	|| (!get_curr_int(list) && infos.dot)
+	|| infos.dot) ? ' ' : infos.space;
 	return (infos);
 }
 
@@ -71,14 +78,15 @@ t_infos			get_infos(char *format, va_list *list,
 	if (*format)
 		++format;
 	if (*format == '-')
-	{
-		infos.pos = 'l';
-		format++;
-	}
+		while (*format && *format == '-')
+		{
+			infos.pos = 'l';
+			format++;
+		}
 	else
 		infos.pos = 'r';
 	infos.space = 0;
-	while (*format == '0')
+	while (*format && *format == '0')
 	{
 		infos.space = (infos.pos == 'l') ? ' ' : '0';
 		format++;

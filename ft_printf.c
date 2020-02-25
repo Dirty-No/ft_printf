@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 00:15:48 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/15 15:31:08 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:23:41 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	print_to_flag(char **str,
 		*str += i + 1;
 		return (i + print_to_flag(str, (*my_write)));
 	}
-	else if (i)
+	else if (i && (*str)[i - 1])
 		my_write(1, *str, i);
 	*str += i;
 	return (i);

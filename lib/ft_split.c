@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libftprintf.h"
+#include "../libftprintf.h"
 
 static	int		ft_word_count(const char *s, char c)
 {

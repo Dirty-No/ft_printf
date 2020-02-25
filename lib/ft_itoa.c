@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "../libftprintf.h"
 #include <stdlib.h>
 
 static	char	*local_copy(char *num, int index)

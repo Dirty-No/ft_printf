@@ -21,7 +21,7 @@ void tst_printf(char *format, ...)
 
 	va_start(lst, format);
 	va_copy(cpy, lst);
-	printf("\033[1;35m\n###############\t\tFORMAT : (%s)\t###############\n\033[1;32mprintf:\t\t|", format);
+	printf("\033[1;35m\n###############\t\tFORMAT : (%s)\t\t###############\n\033[1;32mprintf:\t\t|", format);
 	fflush(stdout);
 	nb1 = vprintf(format, lst);
 	fflush(stdout);
@@ -287,7 +287,7 @@ void	null_format(void)
 
 void	mazoise_2(void)
 {
-		int		a = -4;
+	int		a = -4;
 	int		b = 0;
 	char	c = 'a';
 	int		d = 2147483647;
@@ -315,14 +315,89 @@ void	mazoise_2(void)
 	fflush(stdout);
 }
 
+void	mazoise(int arg)
+{
+	int		a = -4;
+	int		b = 0;
+	char	c = 'a';
+	int		d = 2147483647;
+	int		e = -2147483648;
+	int		f = 42;
+	int		g = 25;
+	int		h = 4200;
+	int		i = 8;
+	int		j = -12;
+	int		k = 123456789;
+	int		l = 0;
+	int		m = -12345678;
+	char	*n = "abcdefghijklmnop";
+	char	*o = "-a";
+	char	*p = "-12";
+	char	*q = "0";
+	char	*r = "%%";
+	char	*s = "-2147483648";
+	char	*t = "0x12345678";
+	char	*u = "-0";
+	switch (arg)
+	{
+	case 2 :
+		tst_printf("%1i, %1d, %1d, %1d, %1d, %1d, %1d, %1d", i, j, k, l, m, c, e, d);
+		break;
+	case 4:
+		ft_printf(" --- Return : %d\n", ft_printf("Simple input test\n"));
+		fflush(stdout);
+		ft_printf(" --- Return : %d\n", ft_printf("%i, %d, %d, %d, %d, %s, %c, %d, %u, %x, %X\n", i, j, k, l, m, n, c, c, j, j, j)); //T2
+		fflush(stdout);
+		break;
+	//case 138:
+		//tst_printf("%0*.*i, %0*.*d, %0*.*d, %0*.*d, %0*.*d, %0*.*d, %0*.*d, %0*.*d", i, j, k, l, m, c, e, d);
+		break;
+	case 42:
+		tst_printf("%-2s, %.s, %-4s, %-2.4s, %-8.12s, %3s, %8s, %---2s, %.*s, %.0s, %.1s, %.2s, %.4s, %.8s", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, -2, NULL, NULL, NULL, NULL, NULL, NULL);
+		break;
+	case 350:
+		tst_printf("%*u, %*x, %*X, %*u, %*x, %*X, %*u, %*x, %*X, %*u, %*x, %*X, %*u, %*x, %*X, %*u, %*x, %*X, %*u, %*x, %*X, %*u, %*x, %*X", a, i, a, i, a, i, a, j, a, j, a, j, a, k, a, k, a, k, a, l, a, l, a, l, a, m, a, m, a, m, a, c, a, c, a, c, a, d, a, d, a, d, a, e, a, e, a, e);
+		break;
+	case 2727:
+		tst_printf("%*u, %*x, %*X, %*u, %*x, %*X", a, i, a, i, a, i, a, j, a, j, a, j);
+	case 7777:
+		tst_printf("%*u, %*x, %*X, %*u,", a, i, a, i, a, i, a, j, a, j);
+		break;
+	case 3333:
+		tst_printf("%*u, %*x, %*X, %*u,", a, i, a, i, a, i, a, j, a, j);
+		break;	
+	default:
+		break;
+	}
+
+}
+
+void	test20(void)
+{
+	tst_printf("%0*.*i", 1, 3, -12);
+}
+
 int main(void)
 {
 	const char format[] = "this %s is %s";
+//	char 		*tmp = malloc(1);
 //	wrap_print_form("%50.100000d", 1234567);
 //	solo_int(50);
 //	test1();
-	mazoise_2();
-	//tst_printf("%7.7s%3.7s", "hello", "world");
-	//system("leaks a.out");
+	mazoise(42);
+//	tst_printf("%1.1i", 0);
+//	tst_printf("%2.1i", 0);
+//	tst_printf("%0*.*i", 1, 3, -1);
+//	tst_printf("%0*.*u", 3, 0, 1);
+//	tst_printf("%0*i", 2, 8);
+//	tst_printf("%0*d", 2, 0);
+//	tst_printf("%.*d", -3, -1);les
+//	tst_printf("%0*.*d", 3, -2, -1);
+//	tst_printf("%0*d", 3, -1);
+//	tst_printf("%*X", -4, 8);
+//	tst_printf("%*u, %*x, %*X", -4, 8, -4, 8, -4, 8);
+//	tst_printf("%-20.15.23.12.10i", 1234567, 8);
+//	free(tmp);
+//	system("leaks a.out");
 	return (0);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "../libftprintf.h"
 #include <stdlib.h>
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))

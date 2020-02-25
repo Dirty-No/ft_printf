@@ -6,7 +6,7 @@
 /*   By: smaccary <smaccary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 10:57:27 by smaccary          #+#    #+#             */
-/*   Updated: 2020/02/15 14:30:00 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:23:42 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			ft_putnbr_base_int(int nbr, char *base,
 	if (nbr == -2147483648)
 	{
 		count += ft_putnbr_base_int(-214748364, base, (*my_write));
-		count += my_write(1, &base[8], 1) + 1;
+		return (count + my_write(1, &base[8], 1));
 	}
 	else if (nbr < 0)
 	{
